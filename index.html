@@ -1,0 +1,35 @@
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Bricks</title>
+    <script src="js/bricks.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <!--Fonti-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Guntur" rel="stylesheet">
+</head>
+
+<body onload="drawIt()">
+    <p id="naslov">THE BRICKS</p>
+    <div id="glavni">
+        <div id="levi">
+            <canvas id="igra" width="1000"></canvas>
+            <div id="gameover"></div>
+        </div>
+        <div id="desni">
+            <button id="reset" onclick="(new drawIt()).reset()">RESET</button>
+            <p id="point"></p>
+            <p id="cas">Time: 00:00</p>
+            <p id="x">High score:</p>
+            <p id="storage">Time: 00:00 Score: 0</p>
+            <canvas id="lifeCan"></canvas>
+        </div>
+    </div>
+    <img id="life" src="img/life.png">
+    <img id="broken" src="img/broken.png">
+    <footer>Designed by Jani Gomezel | &copy; 2021</footer>
+</body>
+
+</html>

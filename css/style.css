@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    background-image: url("../img/brick.jpg");
+    background-repeat: no-repeat;
+    background-position-x: -30px;
+    background-position: fixed;
+    background-size: 103%;
+    overflow: hidden;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 20;
+    font-weight: 400;
+    font-family: 'Hind Guntur', sans-serif;
+ }
+button{
+    height: 30px;
+    width: 90px;
+    font-size: 20;
+    font-weight: 600;
+    background: none;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    outline: none;
+}
+img{
+    display: none;
+}
+p{
+    margin-top: 10px;
+}
+#lifeCan{
+    margin-top: 10px;
+}
+#naslov{
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    font-size: xxx-large;
+    font-family: 'Press Start 2P', cursive;
+}
+#igra{
+    background-image: url("../img/Ozadje.jpg");
+    background-size: 100%;
+}
+#gameover{
+    height: 200;
+    width: 200;
+    position: absolute;
+    background-image: url("../img/gameover.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: none;
+}
+#glavni{
+    margin-left: 25%;
+    margin-top: 20px;
+    position: absolute;
+}
+#levi{
+    border: 2px solid white;
+    float: left;
+}
+#desni{
+    color: white;
+    font-size: 20;
+    font-weight: 600;
+    float: right;
+    text-align: left;
+    height: 300px;
+    width: 200px;
+    font-family: 'Hind Guntur', sans-serif;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
