@@ -1,10 +1,13 @@
 function drawIt() {
+    //button
+    var gumb = document.getElementById('reset');
+    gumb.style.visibility = 'hidden';
     //<div>
     var glavni = document.getElementById('glavni');
     var desni = document.getElementById('desni');
     var levi = document.getElementById('levi');
+    var gameover = document.getElementById('konec');
     //<p>
-    var gameover = document.getElementById('gameover');
     var storage = document.getElementById('storage');
     //canvas
     var canvas = document.getElementById('igra');
@@ -37,18 +40,6 @@ function drawIt() {
     var i;
     var j;
     localStorage.setItem('score', 0);
-    //inicializacija opek
-    for (i = 0; i < vrsta; i++) {
-        bricks[i] = new Array(stolpec);
-        for (j = 0; j < stolpec; j++) {
-            if (i > 1)
-                bricks[i][j] = 1;
-            else if (i == 1)
-                bricks[i][j] = 2;
-            else if (i == 0)
-                bricks[i][j] = 3;
-        }
-    }
     //čas
     var sekundeI;
     var minuteI;
@@ -59,11 +50,28 @@ function drawIt() {
     //gameplay
     var x = 0;
     var score = 0;
+    var vseTocke = 0;
     var up = true;
     var life = 3;
     var refreshInterval;
     var rowheight = brickHeight + padding * 2;
     var colwidth = brickhWidth + padding;
+    //inicializacija opek
+    for (i = 0; i < vrsta; i++) {
+        bricks[i] = new Array(stolpec);
+        for (j = 0; j < stolpec; j++) {
+            if (i > 1) {
+                bricks[i][j] = 1;
+                vseTocke++;
+            } else if (i == 1) {
+                bricks[i][j] = 2;
+                vseTocke = vseTocke + 2;
+            } else if (i == 0) {
+                bricks[i][j] = 3;
+                vseTocke = vseTocke + 3;
+            }
+        }
+    }
     //postavitev
     desni.style.width = storage.clientWidth + 'px';
     desni.style.height = lifeCan.clientHeight + lifeCan.offsetTop + 'px';
@@ -73,7 +81,7 @@ function drawIt() {
 
     glavni.style.width = levi.clientWidth + desni.clientWidth + padding * 2 + 'px';
     glavni.style.height = levi.clientHeight + 'px';
-
+    glavni.style.marginLeft = document.body.clientWidth / 2 - levi.clientWidth / 2;
     //čas
     function timer() {
         if (time) {
@@ -85,8 +93,9 @@ function drawIt() {
         cas.innerHTML = "Time: " + izpisTimer;
     }
     //reset
-    this.reset = function () {
+    this.reset = function() {
         gameover.style.display = 'none';
+        gumb.style.visibility = 'hidden';
         score = 0;
         life = 3;
         x2 = sirinaCan / 2 - sirina / 2;
@@ -134,15 +143,13 @@ function drawIt() {
                     ctx.rect(j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
                     ctx.closePath();
                     ctx.fill();
-                }
-                else if (bricks[i][j] == 2) {
+                } else if (bricks[i][j] == 2) {
                     ctx.fillStyle = "rgb(15, 39, 217)";
                     ctx.beginPath();
                     ctx.rect(j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
                     ctx.closePath();
                     ctx.fill();
-                }
-                else if (bricks[i][j] == 3) {
+                } else if (bricks[i][j] == 3) {
                     ctx.fillStyle = "rgb(0, 4, 117)";
                     ctx.beginPath();
                     ctx.rect(j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
@@ -197,8 +204,39 @@ function drawIt() {
         }
     }
 
+    function konec(niz) {
+        //ustavljanje
+        gumb.style.visibility = 'visible';
+        time = false;
+        clearInterval(intervalTimer);
+        clearInterval(refreshInterval);
+        //game over animacija
+        if (niz == 'gameOver') {
+            gameover.style.backgroundImage = "url('../img/gameOver.png')";
+            gameover.style.display = 'block';
+            gameover.style.animation = 'fadein 1s';
+            gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 2) + 'px';
+            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
+        } else if (niz == 'youWin') {
+            gameover.style.backgroundImage = "url('../img/youWin.png')";
+            gameover.style.display = 'block';
+            gameover.style.animation = 'fadein 1s';
+            gameover.style.marginTop = -visinaCan / 2 + 'px';
+            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
+        }
+        //local storage
+        if (localStorage.getItem('score') < score) {
+            localStorage.setItem('score', score);
+            storage.innerHTML = "Time: " + score + "\n" + "Score: " + izpisTimer;
+        }
+    }
+
     function move() {
         draw();
+        //konec igre
+        if (score >= vseTocke) {
+            konec('youWin');
+        }
         //odboj od roba
         if (life > 0) {
             if (y <= 0 + r)
@@ -210,34 +248,19 @@ function drawIt() {
                 dy = dy * (-1);
             }
         } else {
-            //ustavljanje
-            time = false;
-            clearInterval(intervalTimer);
-            clearInterval(refreshInterval);
-            //game over animacija
-            gameover.style.display = 'block';
-            gameover.style.animation = 'fadein 1s';
-            gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 2) + 'px';
-            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
-            //local storage
-            if (localStorage.getItem('score') < score) {
-                localStorage.setItem('score', score);
-                storage.innerHTML = "Time: " + score + "\n" + "Score: " + izpisTimer;
-            }
+            konec('gameOver');
         }
         //tipkovnica
-        document.addEventListener('keydown', function (event) {
+        document.addEventListener('keydown', function(event) {
             if (event.keyCode == 37) {
                 left = true;
-            }
-            else if (event.keyCode == 39) {
+            } else if (event.keyCode == 39) {
                 right = true;
-            }
-            else if (event.keyCode == 38 && up) {
+            } else if (event.keyCode == 38 && up) {
                 up = false;
             }
         });
-        document.addEventListener('keyup', function (event) {
+        document.addEventListener('keyup', function(event) {
             if (event.keyCode == 37)
                 left = false;
             else if (event.keyCode == 39)
@@ -261,8 +284,7 @@ function drawIt() {
             score++;
         }
         //start
-        if (up) { }
-        else {
+        if (up) {} else {
             time = true;
             x += dx;
             y += dy;
