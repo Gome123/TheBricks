@@ -12,24 +12,26 @@
 </head>
 
 <body onload="drawIt()">
-    <p id="naslov">THE BRICKS</p>
-    <div id="glavni">
-        <div id="levi">
-            <canvas id="igra" width="1000"></canvas>
-            <div id="konec"></div>
+    <div id="cel">
+        <p id="naslov">THE BRICKS</p>
+        <div id="glavni">
+            <div id="levi">
+                <canvas id="igra" width="1000"></canvas>
+                <div id="konec"></div>
+            </div>
+            <div id="desni">
+                <button id="reset" onclick="(new drawIt()).reset()">RESET</button>
+                <p id="point"></p>
+                <p id="cas">Time: 00:00</p>
+                <p id="x">High score:</p>
+                <p id="storage">Time: 00:00 Score: 0</p>
+                <canvas id="lifeCan"></canvas>
+            </div>
         </div>
-        <div id="desni">
-            <button id="reset" onclick="(new drawIt()).reset()">RESET</button>
-            <p id="point"></p>
-            <p id="cas">Time: 00:00</p>
-            <p id="x">High score:</p>
-            <p id="storage">Time: 00:00 Score: 0</p>
-            <canvas id="lifeCan"></canvas>
-        </div>
-    </div>
-    <img id="life" src="img/life.png">
+        <img id="life" src="img/life.png">
     <img id="broken" src="img/broken.png">
     <footer>Designed by Jani Gomezel | &copy; 2021</footer>
+    </div>
 </body>
 
 </html>

@@ -50,10 +50,12 @@ p {
 #naslov {
     margin-top: 10px;
     color: white;
-    text-align: center;
     font-weight: 400;
     font-size: xxx-large;
     font-family: 'Press Start 2P', cursive;
+    height: fit-content;
+    width: 100%;
+    text-align: center;
 }
 
 #igra {
@@ -72,8 +74,7 @@ p {
 }
 
 #glavni {
-    margin-top: 20px;
-    position: absolute;
+    position: fixed;
 }
 
 #levi {
@@ -91,6 +92,15 @@ p {
     height: 300px;
     width: 200px;
     font-family: 'Hind Guntur', sans-serif;
+}
+
+#cel{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    position: fixed;
 }
 
 @keyframes fadein {

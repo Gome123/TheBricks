@@ -73,15 +73,9 @@ function drawIt() {
         }
     }
     //postavitev
-    desni.style.width = storage.clientWidth + 'px';
-    desni.style.height = lifeCan.clientHeight + lifeCan.offsetTop + 'px';
+    glavni.style.marginLeft = glavni.clientLeft + desni.clientWidth;
+    glavni.style.marginTop = document.getElementById("naslov").clientHeight+10;
 
-    levi.style.width = canvas.clientWidth + 'px';
-    levi.style.height = canvas.clientHeight + 'px';
-
-    glavni.style.width = levi.clientWidth + desni.clientWidth + padding * 2 + 'px';
-    glavni.style.height = levi.clientHeight + 'px';
-    glavni.style.marginLeft = document.body.clientWidth / 2 - levi.clientWidth / 2;
     //čas
     function timer() {
         if (time) {
@@ -93,7 +87,7 @@ function drawIt() {
         cas.innerHTML = "Time: " + izpisTimer;
     }
     //reset
-    this.reset = function() {
+    this.reset = function () {
         gameover.style.display = 'none';
         gumb.style.visibility = 'hidden';
         score = 0;
@@ -251,7 +245,7 @@ function drawIt() {
             konec('gameOver');
         }
         //tipkovnica
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.keyCode == 37) {
                 left = true;
             } else if (event.keyCode == 39) {
@@ -260,7 +254,7 @@ function drawIt() {
                 up = false;
             }
         });
-        document.addEventListener('keyup', function(event) {
+        document.addEventListener('keyup', function (event) {
             if (event.keyCode == 37)
                 left = false;
             else if (event.keyCode == 39)
@@ -284,7 +278,7 @@ function drawIt() {
             score++;
         }
         //start
-        if (up) {} else {
+        if (up) { } else {
             time = true;
             x += dx;
             y += dy;
