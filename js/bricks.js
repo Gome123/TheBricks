@@ -1,7 +1,7 @@
 function drawIt() {
     //button
     var gumb = document.getElementById('reset');
-    //gumb.style.visibility = 'hidden';
+    gumb.style.visibility = 'hidden';
     //<div>
     var glavni = document.getElementById('glavni');
     var desni = document.getElementById('desni');
@@ -89,7 +89,7 @@ function drawIt() {
     //reset
     this.reset = function() {
         gameover.style.display = 'none';
-        //gumb.style.visibility = 'hidden';
+        gumb.style.visibility = 'hidden';
         score = 0;
         life = 3;
         x2 = sirinaCan / 2 - sirina / 2;
@@ -200,7 +200,7 @@ function drawIt() {
 
     function konec(niz) {
         //ustavljanje
-        //gumb.style.visibility = 'visible';
+        gumb.style.visibility = 'visible';
         time = false;
         clearInterval(intervalTimer);
         clearInterval(refreshInterval);
