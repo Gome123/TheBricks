@@ -5,6 +5,7 @@
     <title>The Bricks</title>
     <script src="js/bricks.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="/img/ikona.png" />
     <!--Fonti-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
@@ -21,17 +22,26 @@
             </div>
             <div id="desni">
                 <button id="reset" onclick="(new drawIt()).reset()">RESET</button>
-                <p id="point"></p>
-                <p id="cas">Time: 00:00</p>
-                <p id="x">High score:</p>
-                <p id="storage">Time: 00:00 Score: 0</p>
+                <h3 id="point"></h3>
+                <h3 id="cas">Time: 00:00</h3>
+                <h3 id="highScore">High score: 0</h3>
                 <canvas id="lifeCan"></canvas>
             </div>
         </div>
-        <img id="life" src="img/life.png">
-    <img id="broken" src="img/broken.png">
-    <footer>Designed by Jani Gomezel | &copy; 2021</footer>
+    <footer>Designed by Jani Gomezel | <a href="#popup1">&copy;</a> 2021</footer>
     </div>
+
+    <div id="popup1" class="overlay">
+        <div class="popup">
+          <h2>About:</h2>
+          <a class="close" href="#">&times;</a>
+          <p class="content" id="popupP"> Šol. Leto: 2020/21 </p>
+          <p class="content" id="popupP"> Razred: 4. Ra </p>
+        </div>
+      </div>
+
+    <img id="life" src="img/life.png">
+    <img id="broken" src="img/broken.png">
 </body>
 
 </html>

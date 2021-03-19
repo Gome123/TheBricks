@@ -1,14 +1,14 @@
 function drawIt() {
     //button
     var gumb = document.getElementById('reset');
-    gumb.style.visibility = 'hidden';
+    //gumb.style.visibility = 'hidden';
     //<div>
     var glavni = document.getElementById('glavni');
     var desni = document.getElementById('desni');
     var levi = document.getElementById('levi');
     var gameover = document.getElementById('konec');
     //<p>
-    var storage = document.getElementById('storage');
+    var highScore = document.getElementById('highScore');
     //canvas
     var canvas = document.getElementById('igra');
     var ctx = canvas.getContext('2d');
@@ -74,8 +74,8 @@ function drawIt() {
     }
     //postavitev
     glavni.style.marginLeft = glavni.clientLeft + desni.clientWidth;
-    glavni.style.marginTop = document.getElementById("naslov").clientHeight+10;
-
+    glavni.style.marginTop = document.getElementById("naslov").clientHeight+20;
+    
     //čas
     function timer() {
         if (time) {
@@ -87,9 +87,9 @@ function drawIt() {
         cas.innerHTML = "Time: " + izpisTimer;
     }
     //reset
-    this.reset = function () {
+    this.reset = function() {
         gameover.style.display = 'none';
-        gumb.style.visibility = 'hidden';
+        //gumb.style.visibility = 'hidden';
         score = 0;
         life = 3;
         x2 = sirinaCan / 2 - sirina / 2;
@@ -114,14 +114,14 @@ function drawIt() {
             x = x2 + sirina / 2 - r / 2;
             y = visinaCan - visina - r - 2;
         }
-        ctx.fillStyle = "rgb(255,0,0)";
+        ctx.fillStyle = "rgb(255,255,255)";
         ctx.clearRect(0, 0, sirinaCan, visinaCan);
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.fill();
         //plošček
-        ctx.fillStyle = "rgb(255,0,0)";
+        ctx.fillStyle = "rgb(255,255,255)";
         ctx.beginPath();
         ctx.rect(x2, visinaCan - visina, sirina, visina);
         ctx.closePath();
@@ -160,8 +160,8 @@ function drawIt() {
                 ctd.beginPath();
                 ctd.clearRect(0, 0, 200, 200);
                 ctd.drawImage(broken, 0, 0, 50, 50);
-                ctd.drawImage(broken, 50, 0, 50, 50);
-                ctd.drawImage(broken, 100, 0, 50, 50);
+                ctd.drawImage(broken, 55, 0, 50, 50);
+                ctd.drawImage(broken, 110, 0, 50, 50);
                 ctd.closePath();
                 ctd.fill();
                 break;
@@ -169,8 +169,8 @@ function drawIt() {
                 ctd.beginPath();
                 ctd.clearRect(0, 0, 200, 200);
                 ctd.drawImage(srce, 0, 0, 50, 50);
-                ctd.drawImage(broken, 50, 0, 50, 50);
-                ctd.drawImage(broken, 100, 0, 50, 50);
+                ctd.drawImage(broken, 55, 0, 50, 50);
+                ctd.drawImage(broken, 110, 0, 50, 50);
                 ctd.closePath();
                 ctd.fill();
                 break;
@@ -178,8 +178,8 @@ function drawIt() {
                 ctd.beginPath();
                 ctd.clearRect(0, 0, 200, 200);
                 ctd.drawImage(srce, 0, 0, 50, 50);
-                ctd.drawImage(srce, 50, 0, 50, 50);
-                ctd.drawImage(broken, 100, 0, 50, 50);
+                ctd.drawImage(srce, 55, 0, 50, 50);
+                ctd.drawImage(broken, 110, 0, 50, 50);
                 ctd.closePath();
                 ctd.fill();
                 break;
@@ -187,8 +187,8 @@ function drawIt() {
                 ctd.beginPath();
                 ctd.clearRect(0, 0, 200, 200);
                 ctd.drawImage(srce, 0, 0, 50, 50);
-                ctd.drawImage(srce, 50, 0, 50, 50);
-                ctd.drawImage(srce, 100, 0, 50, 50);
+                ctd.drawImage(srce, 55, 0, 50, 50);
+                ctd.drawImage(srce, 110, 0, 50, 50);
                 ctd.closePath();
                 ctd.fill();
                 break;
@@ -200,7 +200,7 @@ function drawIt() {
 
     function konec(niz) {
         //ustavljanje
-        gumb.style.visibility = 'visible';
+        //gumb.style.visibility = 'visible';
         time = false;
         clearInterval(intervalTimer);
         clearInterval(refreshInterval);
@@ -221,7 +221,7 @@ function drawIt() {
         //local storage
         if (localStorage.getItem('score') < score) {
             localStorage.setItem('score', score);
-            storage.innerHTML = "Time: " + score + "\n" + "Score: " + izpisTimer;
+            highScore.innerHTML = "High Score: " + score;
         }
     }
 
@@ -245,7 +245,7 @@ function drawIt() {
             konec('gameOver');
         }
         //tipkovnica
-        document.addEventListener('keydown', function (event) {
+        document.addEventListener('keydown', function(event) {
             if (event.keyCode == 37) {
                 left = true;
             } else if (event.keyCode == 39) {
@@ -254,7 +254,7 @@ function drawIt() {
                 up = false;
             }
         });
-        document.addEventListener('keyup', function (event) {
+        document.addEventListener('keyup', function(event) {
             if (event.keyCode == 37)
                 left = false;
             else if (event.keyCode == 39)
@@ -278,7 +278,7 @@ function drawIt() {
             score++;
         }
         //start
-        if (up) { } else {
+        if (up) {} else {
             time = true;
             x += dx;
             y += dy;
