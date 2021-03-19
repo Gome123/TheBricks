@@ -5,7 +5,6 @@ function drawIt() {
     //<div>
     var glavni = document.getElementById('glavni');
     var desni = document.getElementById('desni');
-    var levi = document.getElementById('levi');
     var gameover = document.getElementById('konec');
     //<p>
     var highScore = document.getElementById('highScore');
