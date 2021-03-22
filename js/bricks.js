@@ -1,3 +1,8 @@
+//sweet alert
+function sweet() {
+    Swal.fire('Šol. Leto 2020/21 \n Razred 4. Ra')
+}
+
 function drawIt() {
     //button
     var gumb = document.getElementById('reset');
@@ -73,8 +78,8 @@ function drawIt() {
     }
     //postavitev
     glavni.style.marginLeft = glavni.clientLeft + desni.clientWidth;
-    glavni.style.marginTop = document.getElementById("naslov").clientHeight+20;
-    
+    glavni.style.marginTop = document.getElementById("naslov").clientHeight + 20;
+
     //čas
     function timer() {
         if (time) {
@@ -86,7 +91,7 @@ function drawIt() {
         cas.innerHTML = "Time: " + izpisTimer;
     }
     //reset
-    this.reset = function() {
+    this.reset = function () {
         gameover.style.display = 'none';
         gumb.style.visibility = 'hidden';
         score = 0;
@@ -244,7 +249,7 @@ function drawIt() {
             konec('gameOver');
         }
         //tipkovnica
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.keyCode == 37) {
                 left = true;
             } else if (event.keyCode == 39) {
@@ -253,7 +258,7 @@ function drawIt() {
                 up = false;
             }
         });
-        document.addEventListener('keyup', function(event) {
+        document.addEventListener('keyup', function (event) {
             if (event.keyCode == 37)
                 left = false;
             else if (event.keyCode == 39)

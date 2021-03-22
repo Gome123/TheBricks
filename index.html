@@ -5,11 +5,17 @@
     <title>The Bricks</title>
     <script src="js/bricks.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/ikona.png" type="image/x-icon"/>
+    <link rel="icon" href="img/ikona.png" type="image/x-icon" />
     <!--Fonti-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Guntur" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="js/sweetalert2.js"></script>
+    <link rel="stylesheet" href="css/sweetalert2.css">
+
 </head>
 
 <body onload="drawIt()">
@@ -28,17 +34,8 @@
                 <canvas id="lifeCan"></canvas>
             </div>
         </div>
-    <footer>Designed by Jani Gomezel | <a href="#popup1">&copy;</a> 2021</footer>
+        <footer><a onclick="sweet()">Designed by Jani Gomezel | &copy; 2021</a></footer>
     </div>
-
-    <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>About:</h2>
-          <a class="close" href="#">&times;</a>
-          <p class="content" id="popupP"> Šol. Leto: 2020/21 </p>
-          <p class="content" id="popupP"> Razred: 4. Ra </p>
-        </div>
-      </div>
 
     <img id="life" src="img/life.png">
     <img id="broken" src="img/broken.png">
