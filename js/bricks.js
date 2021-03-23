@@ -4,6 +4,8 @@ function sweet() {
 }
 
 function drawIt() {
+    var crackimg = document.getElementById("crack");
+    var crackimg2 = document.getElementById("crack2");
     //button
     var gumb = document.getElementById('reset');
     gumb.style.visibility = 'hidden';
@@ -41,6 +43,7 @@ function drawIt() {
     var brickHeight = 20;
     var brickhWidth = sirinaCan / stolpec + padding;
     var bricks = new Array(vrsta);
+    var crack = new Array(vrsta);
     var i;
     var j;
     localStorage.setItem('score', 0);
@@ -60,10 +63,13 @@ function drawIt() {
     var refreshInterval;
     var rowheight = brickHeight + padding * 2;
     var colwidth = brickhWidth + padding;
+    gameover.style.display = 'none';
     //inicializacija opek
     for (i = 0; i < vrsta; i++) {
         bricks[i] = new Array(stolpec);
+        crack[i] = new Array(stolpec);
         for (j = 0; j < stolpec; j++) {
+            crack[i][j] = 0;
             if (i > 1) {
                 bricks[i][j] = 1;
                 vseTocke++;
@@ -92,7 +98,7 @@ function drawIt() {
     }
     //reset
     this.reset = function () {
-        gameover.style.display = 'none';
+        //gameover.style.display = 'none';
         gumb.style.visibility = 'hidden';
         score = 0;
         life = 3;
@@ -135,24 +141,13 @@ function drawIt() {
         //risanje opek
         for (i = 0; i < bricks.length; i++) {
             for (j = 0; j < bricks[i].length - 2; j++) {
-                if (bricks[i][j] == 1) {
-                    ctx.fillStyle = "rgb(27, 152, 247)";
-                    ctx.beginPath();
-                    ctx.rect(j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
-                    ctx.closePath();
-                    ctx.fill();
-                } else if (bricks[i][j] == 2) {
+                if (bricks[i][j] != 0) {
                     ctx.fillStyle = "rgb(15, 39, 217)";
                     ctx.beginPath();
                     ctx.rect(j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
                     ctx.closePath();
                     ctx.fill();
-                } else if (bricks[i][j] == 3) {
-                    ctx.fillStyle = "rgb(0, 4, 117)";
-                    ctx.beginPath();
-                    ctx.rect(j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
-                    ctx.closePath();
-                    ctx.fill();
+                    cracked();
                 }
             }
         }
@@ -210,17 +205,17 @@ function drawIt() {
         clearInterval(refreshInterval);
         //game over animacija
         if (niz == 'gameOver') {
-            gameover.style.backgroundImage = "url('../img/gameOver.png')";
+            gameover.innerHTML = 'GAME OVER';
             gameover.style.display = 'block';
             gameover.style.animation = 'fadein 1s';
-            gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 2) + 'px';
-            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
+            gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 3) + 20 + 'px';
+            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 30 + 'px';
         } else if (niz == 'youWin') {
-            gameover.style.backgroundImage = "url('../img/youWin.png')";
+            gameover.innerHTML = 'YOU WIN';
             gameover.style.display = 'block';
             gameover.style.animation = 'fadein 1s';
-            gameover.style.marginTop = -visinaCan / 2 + 'px';
-            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
+            gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 3) + 20 + 'px';
+            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 50 + 'px';
         }
         //local storage
         if (localStorage.getItem('score') < score) {
@@ -280,12 +275,31 @@ function drawIt() {
             dy = -dy;
             bricks[i][j] = bricks[i][j] - 1;
             score++;
+            crack[i][j]++;
         }
         //start
-        if (up) {} else {
+        if (up) { } else {
             time = true;
             x += dx;
             y += dy;
+        }
+    }
+
+    function cracked() {
+        switch (crack[i][j]) {
+            case 1:
+                ctx.beginPath();
+                ctx.drawImage(crackimg, j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
+                ctx.closePath();
+                break;
+            case 2:
+                ctx.beginPath();
+                ctx.drawImage(crackimg, j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
+                ctx.drawImage(crackimg2, j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
+                ctx.closePath();
+                break;
+            default:
+                break;
         }
     }
     intervalTimer = setInterval(timer, 1000);
