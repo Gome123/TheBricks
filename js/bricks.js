@@ -210,13 +210,13 @@ function drawIt() {
         clearInterval(refreshInterval);
         //game over animacija
         if (niz == 'gameOver') {
-            gameover.style.backgroundImage = "url('../img/gameOver.png')";
+            gameover.style.backgroundImage = 'url("../img/gameOver.png")';
             gameover.style.display = 'block';
             gameover.style.animation = 'fadein 1s';
             gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 2) + 'px';
             gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
         } else if (niz == 'youWin') {
-            gameover.style.backgroundImage = "url('../img/youWin.png')";
+            gameover.style.backgroundImage = 'url("../img/youWin.png")';
             gameover.style.display = 'block';
             gameover.style.animation = 'fadein 1s';
             gameover.style.marginTop = -visinaCan / 2 + 'px';
