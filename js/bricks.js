@@ -1,7 +1,7 @@
 //sweet alert
 function sweet() {
     Swal.fire({
-        title: 'ABOUT ME',
+        title: 'CREDITS',
         html: '<p>Jani Gomezel</p>' +
             '<p>Šol. Leto 2020/21</p>' +
             '<p>Razred 4. Ra</p>',
