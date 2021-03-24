@@ -47,7 +47,7 @@ function drawIt() {
     var right = false;
     var left = false;
     var sirina = 100;
-    var visina = 15;
+    var visina = 11;
     var x2 = sirinaCan / 2 - sirina / 2;
     var dx2 = 6;
     //žoga 
