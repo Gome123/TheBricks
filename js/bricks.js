@@ -1,20 +1,40 @@
 //sweet alert
 function sweet() {
-    Swal.fire('Jani Gomezel \n Šol. Leto 2020/21 \n Razred 4. Ra')
+    Swal.fire({
+        title: 'ABOUT ME',
+        html: '<p>Jani Gomezel</p>' +
+            '<p>Šol. Leto 2020/21</p>' +
+            '<p>Razred 4. Ra</p>',
+        customClass: 'swal',
+        showConfirmButton: false
+    })
+
 }
 
+function startSweet() {
+    Swal.fire({
+        title: 'WELCOME!',
+        html: '<p>Use left/right arrow key to move.</p>' +
+            '<p>You start the game by pressing the up arrow key.</p>',
+        customClass: 'swal',
+        showConfirmButton: false
+    })
+}
+
+var swt = true;
 function drawIt() {
+    if (swt)
+        startSweet();
+    swt = false;
+    //crack
     var crackimg = document.getElementById("crack");
     var crackimg2 = document.getElementById("crack2");
     //button
     var gumb = document.getElementById('reset');
     gumb.style.visibility = 'hidden';
-    //<div>
-    var glavni = document.getElementById('glavni');
-    var desni = document.getElementById('desni');
-    var gameover = document.getElementById('konec');
     //<p>
     var highScore = document.getElementById('highScore');
+    var gameover = document.getElementById('konec');
     //canvas
     var canvas = document.getElementById('igra');
     var ctx = canvas.getContext('2d');
@@ -27,7 +47,7 @@ function drawIt() {
     var right = false;
     var left = false;
     var sirina = 100;
-    var visina = 20;
+    var visina = 15;
     var x2 = sirinaCan / 2 - sirina / 2;
     var dx2 = 6;
     //žoga 
@@ -82,10 +102,6 @@ function drawIt() {
             }
         }
     }
-    //postavitev
-    glavni.style.marginLeft = glavni.clientLeft + desni.clientWidth;
-    glavni.style.marginTop = document.getElementById("naslov").clientHeight + 20;
-
     //čas
     function timer() {
         if (time) {
@@ -94,11 +110,10 @@ function drawIt() {
             minuteI = ((minuteI = Math.floor(sekunde / 60)) > 9) ? minuteI : "0" + minuteI;
             izpisTimer = minuteI + ":" + sekundeI;
         }
-        cas.innerHTML = "Time: " + izpisTimer;
+        cas.innerHTML = "Time:" + izpisTimer;
     }
     //reset
     this.reset = function () {
-        //gameover.style.display = 'none';
         gumb.style.visibility = 'hidden';
         score = 0;
         life = 3;
@@ -137,12 +152,13 @@ function drawIt() {
         ctx.closePath();
         ctx.fill();
         //točke
-        point.innerHTML = "Score: " + score;
+        point.innerHTML = "Score:" + score;
+        point.style.width=125+'px';
         //risanje opek
         for (i = 0; i < bricks.length; i++) {
             for (j = 0; j < bricks[i].length - 2; j++) {
                 if (bricks[i][j] != 0) {
-                    ctx.fillStyle = "rgb(15, 39, 217)";
+                    ctx.fillStyle = "#006FE2";
                     ctx.beginPath();
                     ctx.rect(j * (brickhWidth + padding) + padding, i * (brickHeight + padding) + padding, brickhWidth, brickHeight);
                     ctx.closePath();
@@ -209,18 +225,18 @@ function drawIt() {
             gameover.style.display = 'block';
             gameover.style.animation = 'fadein 1s';
             gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 3) + 20 + 'px';
-            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 30 + 'px';
+            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
         } else if (niz == 'youWin') {
             gameover.innerHTML = 'YOU WIN';
             gameover.style.display = 'block';
             gameover.style.animation = 'fadein 1s';
             gameover.style.marginTop = ((-visinaCan / 2) - gameover.clientHeight / 3) + 20 + 'px';
-            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 50 + 'px';
+            gameover.style.marginLeft = ((canvas.offsetLeft + sirinaCan / 2) - gameover.clientWidth / 2) + 'px';
         }
         //local storage
         if (localStorage.getItem('score') < score) {
             localStorage.setItem('score', score);
-            highScore.innerHTML = "High Score: " + score;
+            highScore.innerHTML = "High Score:" + score;
         }
     }
 
@@ -234,8 +250,15 @@ function drawIt() {
         if (life > 0) {
             if (y <= 0 + r)
                 dy = dy * (-1);
-            else if (x >= sirinaCan - r || x <= 0 + r)
+            else if (x >= sirinaCan - r || x <= 0 + r) {
+                if (x < 0 + r - dx){
+                    x = 0+r;
+                }
+                else if (x > sirinaCan - r + dx) {
+                    x = sirinaCan - r;
+                }
                 dx = dx * (-1);
+            }
             else if (y > visinaCan - r) {
                 life--;
                 dy = dy * (-1);

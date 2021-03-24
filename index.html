@@ -22,17 +22,13 @@
     <div id="cel">
         <p id="naslov">THE BRICKS</p>
         <div id="glavni">
-            <div id="levi">
                 <canvas id="igra" width="1000"></canvas>
                 <p id="konec">GAME OVER</p>
-            </div>
-            <div id="desni">
+                <canvas id="lifeCan" width="165" height="50"></canvas>
+                <p id="point" class="meni"></p>
+                <p id="cas" class="meni">Time:00:00</p>
+                <p id="highScore" class="meni">High score:0</p>
                 <button id="reset" onclick="(new drawIt()).reset()">RESET</button>
-                <h3 id="point"></h3>
-                <h3 id="cas">Time: 00:00</h3>
-                <h3 id="highScore">High score: 0</h3>
-                <canvas id="lifeCan"></canvas>
-            </div>
         </div>
         <footer><a onclick="sweet()">Designed by Jani Gomezel | &copy; 2021</a></footer>
     </div>

@@ -1366,3 +1366,10 @@ body.swal2-toast-column .swal2-toast .swal2-input {
 body.swal2-toast-column .swal2-toast .swal2-validation-message {
   font-size: 1em;
 }
+
+.swal{
+  font-family: 'Press Start 2P', cursive;
+}
+.swal p{
+  margin-top: 10px;
+}
