@@ -26,24 +26,21 @@ footer {
 
 #reset {
   height: 30px;
-  width: 90px;
-  font-size: 20;
-  font-weight: 600;
+  width: 95px;
+  font-size: 15;
   background: none;
   color: white;
   border: 2px solid white;
   border-radius: 10px;
   outline: none;
+  position: relative;
+  top: -25px;
+  margin-left:5px;
+  padding:2px;
 }
 
 img {
   display: none;
-}
-
-button{
-  position: relative;
-  top: -25px;
-  margin-left: 5px;
 }
 
 .meni {
