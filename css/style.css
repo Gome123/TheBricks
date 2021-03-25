@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Press Start 2P', cursive;
 }
 
 body {
@@ -19,7 +20,6 @@ footer {
   color: white;
   text-align: center;
   font-size: 15;
-  font-family: 'Press Start 2P', cursive;
   font-weight: 200;
   margin-bottom: 10px;
 }
@@ -47,7 +47,6 @@ button{
 }
 
 .meni {
-  font-family: 'Press Start 2P', cursive;
   display: inline-flex;
   text-align: center;
   color: white;
@@ -57,7 +56,6 @@ button{
 }
 
 #naslov {
-  font-family: 'Press Start 2P', cursive;
   margin-top: 10px;
   color: white;
   font-weight: 400;
@@ -79,7 +77,6 @@ button{
   height: 200;
   width: 200;
   position: absolute;
-  font-family: 'Press Start 2P', cursive;
 }
 
 #glavni {
