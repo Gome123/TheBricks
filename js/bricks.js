@@ -1,7 +1,7 @@
 //sweet alert
 function sweet() {
     Swal.fire({
-        title: 'CREDITS',
+        title: 'ABOUT ME',
         html: '<p>Jani Gomezel</p>' +
             '<p>Šol. Leto 2020/21</p>' +
             '<p>Razred 4. Ra</p>',
@@ -153,7 +153,7 @@ function drawIt() {
         ctx.fill();
         //točke
         point.innerHTML = "Score:" + score;
-        point.style.width=125+'px';
+        point.style.width = 125 + 'px';
         //risanje opek
         for (i = 0; i < bricks.length; i++) {
             for (j = 0; j < bricks[i].length - 2; j++) {
@@ -251,8 +251,8 @@ function drawIt() {
             if (y <= 0 + r)
                 dy = dy * (-1);
             else if (x >= sirinaCan - r || x <= 0 + r) {
-                if (x < 0 + r - dx){
-                    x = 0+r;
+                if (x < 0 + r - dx) {
+                    x = 0 + r;
                 }
                 else if (x > sirinaCan - r + dx) {
                     x = sirinaCan - r;
@@ -287,9 +287,9 @@ function drawIt() {
         else if (left && x2 > 0)
             x2 = x2 - dx2;
         //odboj od ploščka
-        if (x >= x2 && x <= x2 + sirina && y >= visinaCan - visina - r && y < visinaCan) {
+        if (x - r >= x2 && x <= x2 + sirina && y >= visinaCan - visina - r && y < visinaCan) {
             dx = 8 * ((x - (x2 + sirina / 2)) / sirina);
-            dy = dy * -1;
+            dy = -dy;
         }
         //odboj od opeke
         i = Math.floor(y / rowheight);
